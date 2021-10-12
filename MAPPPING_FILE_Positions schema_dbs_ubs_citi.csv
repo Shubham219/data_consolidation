@@ -1,0 +1,32 @@
+S No,Table,Attribute,Data Type,Description,BoS mapping,DBS Mapping,UBS Mapping,CITI Mapping
+1,Positions,POS_ID,,Unique Position ID - Surrogate Key ,,,,
+2,Positions,Eval_date,,Evaluation date,ValuationDate,Valuation_date,Statement date,As of Date
+3,Positions,Bank,,Bank reference - short name,Add code - BOS,Add code - DBS,Add code - UBS,Add code - CITI
+4,Positions,Customer_Acc,,Customer account number as per banks statement,CustAcctNo,BP_KEY,Account owner code,Account Number
+5,Positions,Portfolio_ID,,Portfolio ID in which instrument is held,PortfolioNo,PORTFOLIO_NUMBER,Safekeeping account,"Generate - Concat(""CITI"" + Account Number)"
+6,Positions,Asset_ID,,Overarching asset category,AssetType,DBS_ASSET_TYPE,~User XA1 sheet to map instruments to asset class,Asset Class
+7,Positions,Sub-asset_ID,,Sub-asset category of the instrument,SubAssetType,DBS_ASSET_SUBTYPE,~User XA1 sheet to map instruments to asset class,Asset Sub Class
+8,Positions,Instrument_type_ID,,Instrument ID type - Contract number/ Deal number/ ISIN/ Valoren number,ISIN,Equity all - ISIN,Equity all - ISIN,ISIN
+9,Positions,Instrument_ID,,Unique identifier - as per type indication,ISIN_Instrument_ID,Equity all - ASSET_ISIN,Equity  - ISIN number,ISIN_Instrument_ID
+10,Positions,Bank_inst_code,,Bank's internal security/instrument code,InstrumentCode,ASSET_ID,UBS asset code,BLANK
+11,Positions,Instrument_Name,,Name of instrument or Description of contract,Description,ASSET DESCRIPTION,Equity - Short description,Description
+12,Positions,Pos_currency,,Currency of exposure,Currency,POS_CURRENCY,Holding Value currency code position,Nominal Currency
+13,Positions,Notional_type,,Whether the it is Amount or Quantity - FAMT/UNIT/Amount/Committed Capital,Commited Capital,Equity -  UNIT,Shares - UNIT,UNIT
+14,Positions,Amount_Quantity_Value,,Value of nominal as per nominal type selection,CommittedCapital,Equity - QUANTITY/NOTIONAL,Shares - Aggregate Balance amount current,Quantity
+15,Positions,Market_price,,Market price of unit on the EOD of Eval_date,MarketPrice,Equity - MARKET_PRICE,Shares - Market Price value SUBBAL1,Market Price
+16,Positions,Market_value,,Market value of  on the EOD of Eval_date,"MarketValue
+",Equity - MARKET_VALUE_POS_CCY,Shares - Holding Value amount position,Current Value  (Nominal Currency)
+17,Positions,Cost_price,,Cost per unit of instrument,CostPrice,Equity - COST_PRICE,Shares - Cost Price amount SUBBAL1,Average or Unit Cost
+18,Positions,Cost_value,,Cost value of total quantity of instrument,CostValue,Equity - COST_VALUE,Shares - Book Value amount SUBBAL1,Total Cost Basis (Nominal Currency)
+19,Positions,Unrealized_P&L,,Unrealized profit or loss (Positional Currency),UnrealizedPLValCcy,Equity - UNREALISED_PL_POS_CCY,Market Price value SUBBAL1,Unrealized Gain/(Loss) (Nominal Currency)
+20,Positions,Maturity/Exp_Date,,Date of maturity or expiry on an instrument,BLANK,Equity BLANK,Shares - Blank,"BLANK
+Equities - Developed Large Cap Equities
+Equities - Developed Small/Mid Cap Equities"
+21,Positions,Accrued_interest,,Interest accrued till date on instrument (Positional currency),Equity (all asset Class except Equity SP) - BLANK,Equity - BLANK,Shares - Blank,BLANK
+22,Positions,Last_Price_Date,,Date stamp when last market price came in,Equity (all asset Class except Equity SP) - DateLastPrice,Equity - PRICE_DATE,Shares - Price Quotation date SUBBAL1,NA ~ Fetch from 3rd party tools
+23,Positions,Reporting currency,,Bank's reporting currency,Equity (all asset Class except Equity SP) - FIXED (USD for BoS),USD,Reference Currency code,Reporting Currency
+24,Positions,Exchange_rate_Report ,,Rate of exchange of positional currency to reporting currency,Equity (all asset Class except Equity SP) -LastFx,MARKET_VALUE_REF_CCY/MARKET_VALUE_POS_CCY,Reference Currency Exchange rate to base currency,~ Calculate - Market Value (Reporting Currency)/ Market Value (Nominal Currency) 
+25,Positions,Internal_ref_currency,,LC's internal reference currency - USD,USD for all,USD for all,USD for all,USD for all
+26,Positions,Exchange_rate_Ref_ccy,,Rate of exchange of reporting currency to internal reference currency,Equity (all asset Class except Equity SP) -LastFx,MARKET_VALUE_REF_CCY/MARKET_VALUE_POS_CCY,~ Ref currency to USD exchange rate,~ Calculate - Market Value (Reporting Currency)/ Market Value (Nominal Currency) 
+27,Positions,Geography,,Domicile on Instrument,"Equity (all asset Class except Equity SP) -Country
+Equity SP - Country",Data not available - Fetch from market data,Place of Safekeeping country code SUBBAL1,Jurisdiction of Issuance
